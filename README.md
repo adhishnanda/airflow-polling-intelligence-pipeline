@@ -56,26 +56,7 @@ The DAGs were successfully executed and triggered via the Airflow UI.
 
 ### Data Lineage
 
-```mermaid
-flowchart LR
-
-  raw[data/raw/president_polls.csv]
-  cleaned[data/processed/polls_cleaned.csv]
-  mart1[data/marts/mart_candidate_state_vote_share.csv]
-  mart2[data/marts/mart_key_candidates_comparison.csv]
-  features[data/marts/mart_ml_features_candidate_level.csv]
-  pred[reports/prediction_summary.csv]
-  dash[Streamlit Dashboard]
-
-  raw --> cleaned
-  cleaned --> mart1
-  cleaned --> mart2
-  cleaned --> features
-  features --> pred
-  cleaned --> dash
-  mart1 --> dash
-  pred --> dash
-```
+![Data Lineage](assets/diagrams/data_lineage.svg)
 
 ---
 
