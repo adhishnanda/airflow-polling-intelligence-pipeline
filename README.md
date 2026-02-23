@@ -44,70 +44,13 @@ The DAGs were successfully executed and triggered via the Airflow UI.
 
 ### High-Level Architecture
 
-```mermaid
-flowchart TB
-
-  subgraph L0["Data Source Layer"]
-    A[FiveThirtyEight Polling Export CSV]
-  end
-
-  subgraph L1["Orchestration Layer"]
-    B[Apache Airflow]
-    B1[polling_intelligence_etl DAG]
-    B2[polling_baseline_prediction DAG]
-  end
-
-  subgraph L2["Processing Layer"]
-    C1[Ingestion Task]
-    C2[Cleaning Task]
-    C3[Analytics Mart Tasks]
-    C4[Feature Engineering Task]
-  end
-
-  subgraph L3["Storage Layer"]
-    D1[(data/raw)]
-    D2[(data/processed)]
-    D3[(data/marts)]
-    D4[(reports)]
-  end
-
-  subgraph L4["Serving Layer (Optional)"]
-    E[Streamlit Dashboard]
-  end
-
-  A --> D1
-  D1 --> B1
-  B1 --> C1 --> C2 --> C3 --> C4
-  C4 --> D2
-  C3 --> D3
-  D2 --> B2
-  B2 --> D4
-  D2 --> E
-  D3 --> E
-  D4 --> E
-```
+![Architecture](assets/diagrams/architecture.svg)
 
 ---
 
 ### DAG Dependency Structure (ETL DAG)
 
-```mermaid
-flowchart LR
-
-  start((Start))
-  ingest[ingest_raw]
-  clean[clean_transform]
-  marts[build_marts]
-  features[build_ml_features]
-  finish((End))
-
-  start --> ingest
-  ingest --> clean
-  clean --> marts
-  clean --> features
-  marts --> finish
-  features --> finish
-```
+![ETL DAG](assets/diagrams/etl_dag.svg)
 
 ---
 
