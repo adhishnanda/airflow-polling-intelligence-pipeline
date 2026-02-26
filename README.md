@@ -1,5 +1,11 @@
 # Airflow-Orchestrated Polling Intelligence Pipeline
-## Production-Style Batch ETL System (Apache Airflow + Python)
+## 🧭 Project Overview
+
+This project implements a production-style batch data pipeline using Apache Airflow to orchestrate ingestion, cleaning, feature engineering, and downstream prediction workflows on election polling data.
+
+The pipeline demonstrates how Airflow coordinates multi-stage data processing and downstream analytics generation in a reproducible and modular system.
+
+### Production-Style Batch ETL System (Apache Airflow + Python)
 
 This project demonstrates a **Data Engineering pipeline orchestrated using Apache Airflow**.
 
@@ -71,6 +77,7 @@ All ETL tasks completed successfully:
 
 ### Baseline Prediction DAG
 
+The baseline prediction DAG is implemented as a batch scoring job, where downstream prediction logic runs as a single Airflow task consuming prepared feature data.
 This downstream batch job consumes engineered features and produces prediction artifacts:
 
 ![Prediction DAG](assets/screenshots/04_prediction_graph.png)
@@ -80,6 +87,7 @@ This downstream batch job consumes engineered features and produces prediction a
 ### Prediction DAG Successful Execution
 
 ![Prediction DAG Success](assets/screenshots/05_prediction_success.png)
+
 
 ---
 
@@ -116,8 +124,8 @@ Example visualization generated automatically by Airflow:
 
 ```
 ├── dags/
-│   ├── polling_etl_dag.py
-│   └── election_prediction_dag.py
+│   ├── polling_intelligence_etl.py
+│   └── polling_baseline_prediction.py
 │
 ├── src/
 │   ├── ingest.py
@@ -253,41 +261,46 @@ This project was developed and tested using Airflow inside WSL (Linux environmen
 
 Step 1: Clone repository
 
+```bash
 git clone https://github.com/adhishnanda/polling-intelligence-pipeline.git
-
 cd polling-intelligence-pipeline
+```
 
 ---
 
 Step 2: Create Python environment
 
+```bash
 python3.10 -m venv airflow_venv
-
 source airflow_venv/bin/activate
-
 pip install -r requirements.txt
+```
 
 ---
 
 Step 3: Set environment variables
 
+```bash
 export PIPELINE_ROOT=$(pwd)
-
 export AIRFLOW_HOME=$(pwd)/airflow
-
 export PYTHONPATH=$(pwd)
+```
 
 ---
 
 Step 4: Initialize Airflow
 
+```bash
 airflow db init
+```
 
 ---
 
 Step 5: Start Airflow
 
+```bash
 airflow standalone
+```
 
 ---
 
@@ -301,11 +314,14 @@ Step 7: Trigger DAGs
 
 Run in order:
 
+```bash
 polling_intelligence_etl
-
+```
 then
 
+```bash
 polling_baseline_prediction
+```
 
 ---
 
@@ -360,6 +376,19 @@ This demonstrates how Airflow pipelines can power downstream analytics applicati
 ```bash
 streamlit run dashboard/streamlit_app.py
 ```
+
+---
+
+## 📦 Requirements
+
+See requirements.txt for full dependencies.
+
+Key technologies:
+
+- Apache Airflow
+- Pandas
+- Matplotlib
+- Streamlit
 
 ---
 
