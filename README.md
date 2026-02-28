@@ -1,4 +1,8 @@
 # Airflow-Orchestrated Polling Intelligence Pipeline
+
+📄 **Project Report:**  
+[View Full Technical Report (PDF)](docs/polling-intelligence-pipeline-report.pdf)
+
 ## 🧭 Project Overview
 
 This project implements a production-style batch data pipeline using Apache Airflow to orchestrate ingestion, cleaning, feature engineering, and downstream prediction workflows on election polling data.
@@ -101,6 +105,14 @@ Example visualization generated automatically by Airflow:
 ---
 
 ## 🧱 System Architecture
+
+### 🔄 End-to-End Pipeline Flow
+
+This diagram shows the complete data flow orchestrated by Apache Airflow, including ETL, feature engineering, batch prediction, and Streamlit visualization.
+
+![Pipeline Flow](assets/diagrams/flowchart.svg)
+
+---
 
 ### High-Level Architecture
 
